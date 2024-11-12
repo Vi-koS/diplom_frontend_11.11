@@ -8,6 +8,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { fetchSneakers } from "../../../slices/sneakersSlice";
 import { AppDispatch } from "../../../store";
 import { getBaseLimit } from "../../../slices/dataSlice";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   setGender: (gender: string) => void;
@@ -20,6 +21,8 @@ export interface IFormData {
   gender: string;
   sizes: number[];
 }
+
+
 
 const CatalogFilter: FC<IProps> = ({ setGender }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -47,6 +50,14 @@ const CatalogFilter: FC<IProps> = ({ setGender }) => {
     );
   };
 
+  const navigate = useNavigate();
+
+  const handleReload = () => {
+    navigate('/');
+    window.location.reload();
+  };
+
+
   return (
     <CatalogFilterStyle
       onSubmit={handleSubmit(onSubmit)}
@@ -63,7 +74,7 @@ const CatalogFilter: FC<IProps> = ({ setGender }) => {
       <button
         type="reset"
         onClick={() => {
-
+          handleReload();
           setValue("startPrice", 0);
           setValue("endPrice", 99999);
           setValue("gender", "");

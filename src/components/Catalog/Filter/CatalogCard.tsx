@@ -41,7 +41,6 @@ const CatalogCard: FC<IProps> = ({ item }) => {
       <p>{item.price} ₽</p>
       <p>{item.gender}</p>
 
-      {/* Передаем ModalProductPage в качестве содержимого Modal */}
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <ModalProductPage sneaker={item} />
       </Modal>
