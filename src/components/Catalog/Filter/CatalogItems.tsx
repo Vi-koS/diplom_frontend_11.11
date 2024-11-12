@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch,RootState } from "../../../store";
+import { AppDispatch, RootState } from "../../../store";
 import { ISneakers } from "../../../slices/basketSlice";
 import { fetchSneakers } from "../../../slices/sneakersSlice";
 import { changeLimit } from "../../../slices/dataSlice";
@@ -32,6 +32,10 @@ const CatalogItems: FC<IProps> = ({ gender }) => {
 
   return (
     <CatalogItemsStyle>
+      {sneakers.length === 0 ? (
+        <h2>Подходящих товаров не найдено</h2>
+      ) : (
+        <>
       <ul>
         {sneakers
           .filter((_, index) => index < limit)
@@ -41,7 +45,8 @@ const CatalogItems: FC<IProps> = ({ gender }) => {
       </ul>
 
       <ButtonRed type="button" onClick={() => dispatch(changeLimit())} disabled={limit >= sneakers.length} text="Показать еще"/>
-      
+      </>
+      )}
     </CatalogItemsStyle>
   );
 };
