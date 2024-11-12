@@ -6,13 +6,14 @@ import { postBasket } from "../../../slices/basketSlice";
 import s from "./style.module.css";
 import StarRating from "./StarRating";
 import ButtonRed from "../../Buttons/btn_red/buttonRed";
+import { AppDispatch } from "../../../store";
 
 interface ModalProductPageProps {
     sneaker: ISneakers;
   }
 
   const ModalProductPage: FC<ModalProductPageProps> = ({ sneaker }) => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const [selectedSize, setSelectedSize] = useState<number | null>(null);
   
     if (!sneaker) return <p>Загрузка...</p>;
